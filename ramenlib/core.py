@@ -221,6 +221,15 @@ def lack_of_fusion_porosity_classifier(depth, layer_thickness):
         return True
 # --------------------------------------------------------------------------------
 
+def kurz_fisher_primary_spacing(G, V, Consts):
+    Tf = Consts.set_Tf
+    Tf_noneq = Tf  # Because I still havent separated the solidus and eutectic temp, this is == to Tf
+    L = 168
+    k = Consts.set_k_0
+    D_l = Consts.set_D_l
+    Gamma = Consts.set_Gamma
+    return 4.3 * np.sqrt(Tf_noneq/G) * (D_l * Gamma /(V*k*Tf))**0.25
+
 # --------------------------------------------------------------------------------
 # NaN classification
 # Model taken from: 
@@ -229,5 +238,3 @@ def lack_of_fusion_porosity_classifier(depth, layer_thickness):
 def nan_classifier(value):
     return np.isnan(value)
 # --------------------------------------------------------------------------------
-
-
